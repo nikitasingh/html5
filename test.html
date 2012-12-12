@@ -1,0 +1,72 @@
+
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>HTML5 localStorage</title>
+  
+ </head>
+ <body onload="doShowAll()">
+  <h1>HTML5 localStorage</h1>
+
+  <form name=editor>
+
+    
+     <p>
+     <label>Name: <textarea name=name cols=41 rows=10></textarea></label>
+     </p>
+
+     <p>
+      <label>Telephone number: <input name=telephone></label>
+<label>Telephone number: <input name=email></label>
+     
+      <input type=button value="setItem()" onclick="doSetItem()">
+    <input type=button value="save()" onclick="save()">
+     </p>
+   </div>
+
+   <div id="items_table">
+     <h2>Items</h2>
+     <table id=pairs></table>
+    
+   </div>
+
+
+   <script>
+
+     function doSetItem() {
+       var name = document.forms.editor.name.value;
+       var telephone = document.forms.editor.telephone.value;
+       localStorage.setItem(name, telephone);
+name.value = window.localStorage.getItem('name');
+       doShowAll();
+     }
+
+     function save () {
+var name = document.forms.editor.name.value;
+  window.localStorage.setItem('value', name);
+ name.value = window.localStorage.getItem('value');
+}
+name.value = window.localStorage.getItem('value');
+
+function doShowAll() {
+       var key = "";
+       var pairs = "<tr><th>Name</th><th>Value</th></tr>\n";
+       var i=0;
+       for (i=0; i<=localStorage.length-1; i++) {
+         key = localStorage.key(i);
+         pairs += "<tr><td>"+key+"</td>\n<td>"+localStorage.getItem(key)+"</td></tr>\n";
+       }
+       if (pairs == "<tr><th>Name</th><th>Value</th></tr>\n") {
+         pairs += "<tr><td><i>empty</i></td>\n<td><i>empty</i></td></tr>\n";
+       }
+       document.getElementById('pairs').innerHTML = pairs;
+document.forms.editor.name.value= window.localStorage.getItem('value');
+     }
+     
+    
+   </script>
+
+  </form>
+
+ </body>
+</html>
